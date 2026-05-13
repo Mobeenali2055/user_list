@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 40px;
+}
+
+/* Main container */
+.container {
+  max-width: 400px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+}
+
+/* Button */
+button {
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* Loading text */
+.loading {
+  color: blue;
+}
+
+/* Error text */
+.error {
+  color: red;
+}
+
+/* List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* List item */
+li {
+  padding: 12px;
+  margin-bottom: 10px;
+  background-color: #e9f2ff;
+  border-radius: 5px;
+}
