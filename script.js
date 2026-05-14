@@ -1,22 +1,16 @@
-﻿// =============================================
-// COMMIT 4: Refresh Functionality
-// The Refresh button re-calls fetchUsers(),
-// resetting all state and re-fetching from API.
-// =============================================
+﻿
 
-// ------ DOM References ------
+
 const refreshBtn   = document.getElementById("refreshBtn");
 const loadingState = document.getElementById("loadingState");
 const errorState   = document.getElementById("errorState");
 const emptyState   = document.getElementById("emptyState");
 const userList     = document.getElementById("userList");
 
-// ------ API URL ------
+
 const API_URL = "https://jsonplaceholder.typicode.com/users";
 
-// =============================================
-// STATE MANAGEMENT
-// =============================================
+
 
 function showLoading() {
   loadingState.hidden = false;
@@ -59,9 +53,7 @@ function showSuccess(users) {
   refreshBtn.classList.remove("loading");
 }
 
-// =============================================
-// ASYNC FETCH FUNCTION
-// =============================================
+
 
 function fetchUsers() {
   showLoading();
@@ -82,11 +74,7 @@ function fetchUsers() {
     });
 }
 
-// =============================================
-// REFRESH BUTTON
-// Clicking Refresh calls the same fetchUsers()
-// which resets state and re-fetches fresh data.
-// =============================================
+
 refreshBtn.addEventListener("click", function() {
   fetchUsers();
 });
