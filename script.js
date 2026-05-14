@@ -1,9 +1,9 @@
-﻿// Commit 2: API Integration + Loading State
-// Fetches users and shows loading while waiting.
-// Error handling will be added in Commit 3.
+﻿// Commit 3: Error Handling
+// Adds .catch() and a visible error panel when the request fails.
 
 const refreshBtn   = document.getElementById("refreshBtn");
 const loadingState = document.getElementById("loadingState");
+const errorState   = document.getElementById("errorState");
 const emptyState   = document.getElementById("emptyState");
 const userList     = document.getElementById("userList");
 
@@ -11,10 +11,20 @@ const API_URL = "https://jsonplaceholder.typicode.com/users";
 
 function showLoading() {
   loadingState.hidden = false;
+  errorState.hidden   = true;
   emptyState.hidden   = true;
   userList.hidden     = true;
   refreshBtn.disabled = true;
   refreshBtn.classList.add("loading");
+}
+
+function showError() {
+  loadingState.hidden = true;
+  errorState.hidden   = false;
+  emptyState.hidden   = true;
+  userList.hidden     = true;
+  refreshBtn.disabled = false;
+  refreshBtn.classList.remove("loading");
 }
 
 function showSuccess(users) {
@@ -33,6 +43,7 @@ function showSuccess(users) {
     userList.appendChild(li);
   });
   loadingState.hidden = true;
+  errorState.hidden   = true;
   emptyState.hidden   = true;
   userList.hidden     = false;
   refreshBtn.disabled = false;
@@ -43,12 +54,18 @@ function fetchUsers() {
   showLoading();
   fetch(API_URL)
     .then(function(response) {
+      if (!response.ok) {
+        throw new Error("HTTP error: " + response.status);
+      }
       return response.json();
     })
     .then(function(users) {
       showSuccess(users);
+    })
+    .catch(function(err) {
+      console.error("Fetch failed:", err);
+      showError();
     });
-  // Note: .catch() for error handling comes in Commit 3
 }
 
 refreshBtn.addEventListener("click", function() {
