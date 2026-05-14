@@ -1,33 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User List</title>
-
-  <!-- CSS File -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users API Component</title>
+  <meta name="description" content="Fetch and display users from JSONPlaceholder API with loading, error, and success states." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
 
-  <div class="container">
-    <h2>User List</h2>
+  <div class="page-wrapper">
+    <header class="page-header">
+      <h1 class="page-title">Users API Component</h1>
+      <p class="page-subtitle">Fetch users from JSONPlaceholder · loading / error / success states</p>
+    </header>
 
-    <!-- Refresh Button -->
-    <button id="refreshBtn">Refresh</button>
+    <div class="card" id="usersCard">
 
-    <!-- Status messages -->
-    <p id="loading" class="loading">Loading users...</p>
-    <p id="error" class="error"></p>
+      <!-- Card Header -->
+      <div class="card-header">
+        <h2 class="card-title">Users</h2>
+        <button id="refreshBtn" class="btn btn-primary">
+          <span class="btn-icon" id="btnIcon">&#x21BB;</span>
+          Refresh
+        </button>
+      </div>
 
-    <!-- User List -->
-    <ul id="userList"></ul>
+      <!-- Loading State -->
+      <div id="loadingState" class="state-panel loading-panel" aria-live="polite" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="state-text">Loading users…</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="errorState" class="state-panel error-panel" role="alert" hidden>
+        <span class="error-icon">&#x26A0;&#xFE0F;</span>
+        <p class="error-title">Failed to fetch users.</p>
+        <p class="error-sub">Please try again.</p>
+      </div>
+
+      <!-- Empty State (initial) -->
+      <div id="emptyState" class="state-panel empty-panel">
+        <p class="state-text muted">No users loaded yet.</p>
+      </div>
+
+      <!-- User List -->
+      <ul id="userList" class="user-list" aria-label="User list" hidden></ul>
+
+    </div>
   </div>
 
-  <!-- JS File -->
   <script src="script.js"></script>
-
 </body>
 </html>
